@@ -1,8 +1,13 @@
 import { useState } from 'react';
 import Img1 from "./assets/img1.png"
 import bgimg from "./assets/bgimg.png"
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css'; // Swiperning asosiy CSS fayli
+import 'swiper/css/navigation'; // Navigatsiya uchun CSS
+import 'swiper/css/pagination'; // Pagination uchun CSS
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
-const App = ({ title, content }) => {
+const App = () => {
 
   const [openIndex, setOpenIndex] = useState(null);
   const toggle = (index) => {
@@ -260,11 +265,15 @@ const App = ({ title, content }) => {
               <h3 className="text-xl font-bold text-blue-700 mb-2 text-center">
                 DARS JADVALI
               </h3>
-              <p className="text-gray-700 text-sm text-center mb-1">
-                Dushanba 
-                · Seshanba · 
-                Chorshanba · Payshanba · Juma · Shanba
-              </p>
+              <ul className="text-gray-700 list-disc list-inside items-center text-sm text-center space-y-1">
+                <li>Dushanba</li>
+                <li>Seshanba</li>
+                <li>Chorshanba</li>
+                <li>Payshanba</li>
+                <li>Juma</li>
+                <li>Shanba</li>
+              </ul>
+
               <p className="text-gray-800 font-semibold text-center">
                 09:00 dan 13:00 gacha
               </p>
@@ -302,7 +311,131 @@ const App = ({ title, content }) => {
           </div>
         </section>
 
+        <section className="w-full py-40">
+          <h1 className='text-center font-bold text-5xl mb-5'>Nima Uchun Biz</h1>
+          <div className="flex flex-wrap justify-around max-w-6xl mx-auto">
+            <div className="bg-[#e6f4ea] border-2 border-[#d1c4e9] rounded-lg w-[30%] m-2.5 p-5 text-center shadow-lg">
+              <h3 className="text-[#4caf50] mb-4 text-2xl font-bold">AKSIYA !</h3>
+              <p className="text-[#333] text-base leading-6">
+                Наши предварительные итоговые результаты включают предварительные данные за такой класс и других.
+              </p>
+            </div>
+            <div className="bg-[#e6f4ea] border-2 border-[#d1c4e9] rounded-lg w-[30%] m-2.5 p-5 text-center shadow-lg">
+              <h3 className="text-[#4caf50] mb-4 text-2xl font-bold">Сертификаты</h3>
+              <p className="text-[#333] text-base leading-6">
+                Успешное обучение, сертификат на это окно-ученик у разработчиков при этом.
+              </p>
+            </div>
+            <div className="bg-[#e6f4ea] border-2 border-[#d1c4e9] rounded-lg w-[30%] m-2.5 p-5 text-center shadow-lg">
+              <h3 className="text-[#4caf50] mb-4 text-2xl font-bold">Популярные ключевые</h3>
+              <p className="text-[#333] text-base leading-6">
+                Екатеринбург, более 2000 кандидатов-благотворителей проводились.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="w-full">
+
+          <h1 className='text-center font-bold text-5xl mb-5'>AKSIYA !</h1>
+          <div className="max-w-6xl mx-auto py-10">
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              spaceBetween={20}
+              slidesPerView={3}
+              navigation={{
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              }}
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 3000 }}
+              breakpoints={{
+                768: { slidesPerView: 1 },
+                1024: { slidesPerView: 3 },
+              }}
+              className="relative"
+            >
+              <SwiperSlide>
+                <div className="bg-[#e6f4ea] border-2 border-[#d1c4e9] rounded-lg p-5 text-center shadow-lg">
+                  <h3 className="text-[#4caf50] mb-4 text-2xl font-bold">AKSIYA !</h3>
+                  <p className="text-[#333] text-base leading-6">
+                    Успешное обучение, сертификат на это окно-ученик у разработчиков при этом.
+                  </p>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="bg-[#e6f4ea] border-2 border-[#d1c4e9] rounded-lg p-5 text-center shadow-lg">
+                  <h3 className="text-[#4caf50] mb-4 text-2xl font-bold">AKSIYA !</h3>
+                  <p className="text-[#333] text-base leading-6">
+                    Успешное обучение, сертификат на это окно-ученик у разработчиков при этом.
+                  </p>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="bg-[#e6f4ea] border-2 border-[#d1c4e9] rounded-lg p-5 text-center shadow-lg">
+                  <h3 className="text-[#4caf50] mb-4 text-2xl font-bold">AKSIYA !</h3>
+                  <p className="text-[#333] text-base leading-6">
+                    Екатеринбург, более 2000 кандидатов-благотворителей проводились.
+                  </p>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="bg-[#e6f4ea] border-2 border-[#d1c4e9] rounded-lg p-5 text-center shadow-lg">
+                  <h3 className="text-[#4caf50] mb-4 text-2xl font-bold">AKSIYA !</h3>
+                  <p className="text-[#333] text-base leading-6">
+                    Наши предварительные итоговые результаты включают предварительные
+                  </p>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="bg-[#e6f4ea] border-2 border-[#d1c4e9] rounded-lg p-5 text-center shadow-lg">
+                  <h3 className="text-[#4caf50] mb-4 text-2xl font-bold">AKSIYA !</h3>
+                  <p className="text-[#333] text-base leading-6">
+                    Успешное обучение, сертификат на это окно-ученик у разработчиков при этом.
+                  </p>
+                </div>
+              </SwiperSlide>
+            </Swiper>
+          </div>
+        </section>
+
+        <section>
+          <div
+            className="w-full px-5 bg-white rounded-2xl shadow-lg flex items-center justify-center"
+            data-aos="fade-right"
+            data-aos-duration="800"
+          >
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6090.994748927668!2d72.3307203!3d40.8011046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb85f1c4d10b11%3A0xb8bdf7a53d26a0c3!2sPasport%20Stol%20%E2%84%962!5e0!3m2!1sru!2s!4v1714036123456!5m2!1sru!2s"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </section>
+
       </main >
+
+      <footer className="w-full bg-[#e6f4ea] border-t-2 border-[#d1c4e9] py-6">
+        <div className="max-w-6xl mx-auto text-center">
+          <h3 className="text-[#4caf50] text-2xl font-bold mb-4">"SHIFOKOR OQUV MARKAZI" o'quv markazi</h3>
+          <p className="text-[#333] mb-2">
+            Samarqand, Termizskaya ko'chasi 67A, O'zbekiston
+          </p>
+          <p className="text-[#333] mb-2">
+            Telefon: <a href="tel:+998976110604" className="text-[#4caf50] hover:underline">+998 97 611 06 04</a>
+          </p>
+          <p className="text-[#333] mb-2">
+            Dushanba - Shanba 9:00 - 17:00 | Yakshanba: dam olish kuni
+          </p>
+          <p className="text-[#333] text-sm mt-4">
+            © SHIFOKOR OQUV MARKAZI 2025
+          </p>
+        </div>
+      </footer>
 
 
     </>
