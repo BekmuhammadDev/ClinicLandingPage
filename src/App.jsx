@@ -14,6 +14,11 @@ import { FaUser } from "react-icons/fa";
 import { IoCallSharp } from "react-icons/io5";
 import { FaCheck, FaTimes, FaClock, FaUtensils, FaCertificate, FaRegClock, FaCalendarAlt, FaClipboardList } from "react-icons/fa";
 import Xona1 from "./assets/hona 1.png"
+import Xona2 from "./assets/hona 2.png"
+import Xona3 from "./assets/hona 3.png"
+import Xona4 from "./assets/hona 4.png"
+import Litsenziya from "./assets/litsenziya.svg"
+import BgLitsenziya from "./assets/bgiimglit.png"
 
 const App = () => {
 
@@ -514,10 +519,9 @@ const App = () => {
           </div>
         </section>
 
-        <section className="w-full">
+        <section>
 
-          <h1 className='text-center font-bold text-5xl mb-5'>Video Uchun !</h1>
-          <div className=" py-10">
+          <div className=" flex justify-center">
             <Swiper
               modules={[Navigation, Pagination, Autoplay]}
               spaceBetween={20}
@@ -530,77 +534,102 @@ const App = () => {
               autoplay={{ delay: 3000 }}
               breakpoints={{
                 768: { slidesPerView: 1 },
-                1024: { slidesPerView: 3 },
+                1024: { slidesPerView: 1 },
               }}
               className="relative"
             >
               <SwiperSlide>
-                <div className="bg-[#e6f4ea] border-2 h-screen w-full flex flex-col md:flex-row items-center justify-center border-[#d1c4e9] rounded-lg p-5 text-center shadow-lg">
-                  <div className="md:w-1/2 mb-5 md:mb-0">
-                    <h3 className="text-[#4caf50] mb-4 text-2xl font-bold">O’quv honalar</h3>
-                    <p className="text-[#333] text-base leading-6">
+                <div className="bg-[#EEEEEE] h-[80vh] w-full flex flex-col md:flex-row gap-10 justify-between pt-20 p-10">
+                  <div className="md:w-1/2 px-5">
+                    <h3 className="text-[#4caf50] mb-5 text-6xl font-bold">O’quv honalar</h3>
+                    <p className="text-[#333] text-base leading-7">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum natus labore est eaque sequi omnis nobis magni optio tempore voluptatem rem, quod pariatur deserunt voluptas saepe consequatur debitis dolores odio atque libero maiores voluptates commodi. Soluta natus aliquid, vitae sunt assumenda, optio autem odio, fugiat molestiae esse fuga saepe repellat.
                     </p>
                   </div>
-                  <div className="md:w-1/2">
-                    <img src={Xona1} alt="" className="max-w-full h-auto" />
+                  <div className="md:w-1/2 flex justify-center">
+                    <img
+                      src={Xona1}
+                      alt="O’quv xonasi"
+                      className="w-[500px] max-w-full h-[350px] object-cover rounded-xl shadow-lg"
+                    />
                   </div>
                 </div>
               </SwiperSlide>
 
               <SwiperSlide>
-                <div className="bg-[#e6f4ea] border-2 h-screen w-full flex items-center justify-between  border-[#d1c4e9] rounded-lg   shadow-lg">
-                  <div>
-                    <div>
-                      <h3 className="text-[#4caf50] mb-4 text-2xl font-bold">O’quv honalar</h3>
-                      <p className="text-[#333] text-base leading-6">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum natus labore est eaque <br /> sequi omnis nobis magni optio tempore voluptatem rem, quod pariatur deserunt voluptas <br /> saepe consequatur debitis dolores odio atque libero maiores voluptates commodi. <br /> Soluta natus aliquid, vitae sunt assumenda, optio autem odio, fugiat molestiae esse fuga saepe repellat.
-                      </p>
-                    </div>
+                <div className="bg-[#EEEEEE] h-[80vh] w-full flex flex-col md:flex-row gap-10 justify-between pt-20 p-10">
+                  <div className="md:w-1/2 px-5">
+                    <h3 className="text-[#4caf50] mb-5 text-6xl font-bold">O’quv honalar</h3>
+                    <p className="text-[#333] text-base leading-7">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum natus labore est eaque sequi omnis nobis magni optio tempore voluptatem rem, quod pariatur deserunt voluptas saepe consequatur debitis dolores odio atque libero maiores voluptates commodi. Soluta natus aliquid, vitae sunt assumenda, optio autem odio, fugiat molestiae esse fuga saepe repellat.
+                    </p>
                   </div>
+                  <div className="md:w-1/2 flex justify-center">
+                    <img
+                      src={Xona2}
+                      alt="O’quv xonasi"
+                      className="w-[500px] max-w-full h-[450px] object-cover rounded-xl shadow-lg"
+                    />
+                  </div>
+                </div>
+              </SwiperSlide>
 
-                  <div>
-                    <div>
-                      <img src={Xona1} alt="" className="max-w-full h-auto" />
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
               <SwiperSlide>
-                <div className="bg-[#e6f4ea] border-2 h-screen w-full flex flex-col md:flex-row items-center justify-center border-[#d1c4e9] rounded-lg p-5 text-center shadow-lg">
-                  <div className="md:w-1/2 mb-5 md:mb-0">
-                    <h3 className="text-[#4caf50] mb-4 text-2xl font-bold">O’quv honalar</h3>
-                    <p className="text-[#333] text-base leading-6">
+                <div className="bg-[#EEEEEE] h-[80vh] w-full flex flex-col md:flex-row gap-10 justify-between pt-20 p-10">
+                  <div className="md:w-1/2 px-5">
+                    <h3 className="text-[#4caf50] mb-5 text-6xl font-bold">O’quv honalar</h3>
+                    <p className="text-[#333] text-base leading-7">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum natus labore est eaque sequi omnis nobis magni optio tempore voluptatem rem, quod pariatur deserunt voluptas saepe consequatur debitis dolores odio atque libero maiores voluptates commodi. Soluta natus aliquid, vitae sunt assumenda, optio autem odio, fugiat molestiae esse fuga saepe repellat.
                     </p>
                   </div>
-                  <div className="md:w-1/2">
-                    <img src={Xona1} alt="" className="max-w-full h-auto" />
+                  <div className="md:w-1/2 flex justify-center">
+                    <img
+                      src={Xona3}
+                      alt="O’quv xonasi"
+                      className="w-[600px] max-w-full h-[350px] object-cover rounded-2xl"
+                    />
                   </div>
                 </div>
               </SwiperSlide>
+
               <SwiperSlide>
-                <div className="bg-[#e6f4ea] border-2 h-screen w-full flex flex-col md:flex-row items-center justify-center border-[#d1c4e9] rounded-lg p-5 text-center shadow-lg">
-                  <div className="md:w-1/2 mb-5 md:mb-0">
-                    <h3 className="text-[#4caf50] mb-4 text-2xl font-bold">O’quv honalar</h3>
-                    <p className="text-[#333] text-base leading-6">
+                <div className="bg-[#EEEEEE] h-[80vh] w-full flex flex-col md:flex-row gap-10 justify-between pt-20 p-10">
+                  <div className="md:w-1/2 px-5">
+                    <h3 className="text-[#4caf50] mb-5 text-6xl font-bold">O’quv honalar</h3>
+                    <p className="text-[#333] text-base leading-7">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum natus labore est eaque sequi omnis nobis magni optio tempore voluptatem rem, quod pariatur deserunt voluptas saepe consequatur debitis dolores odio atque libero maiores voluptates commodi. Soluta natus aliquid, vitae sunt assumenda, optio autem odio, fugiat molestiae esse fuga saepe repellat.
                     </p>
                   </div>
-                  <div className="md:w-1/2">
-                    <img src={Xona1} alt="" className="max-w-full h-auto" />
+                  <div className="md:w-1/2 flex justify-center">
+                    <img
+                      src={Xona4}
+                      alt="O’quv xonasi"
+                      className="w-[600px] max-w-full h-[350px] object-cover rounded-2xl"
+                    />
                   </div>
                 </div>
               </SwiperSlide>
+
             </Swiper>
           </div>
         </section>
 
+        <section>
+          <h1 className='text-5xl font-bold text-center mt-10 mb-10 uppercase text-[#007360]'>Litsenziya</h1>
+          <div className='relative -top-28'>
+            <img className='absolute right-0 -z-10 top-0' src={BgLitsenziya} alt="" />
+          </div>
+          <div className='flex justify-center'>
+            <img src={Litsenziya} alt="" />
+          </div>
 
-        <section className="w-full">
+        </section>
 
-          <h1 className='text-center font-bold text-5xl mb-5'>Video Uchun !</h1>
-          <div className="max-w-6xl mx-auto py-10">
+
+        <section className='bg-[#EEEEEE] py-10 mt-16'>
+
+          <h1 className='text-center font-bold text-5xl text-[#007360] mb-5 mt-20 uppercase'>VIDEO JAMLANMA</h1>
+          <div className="max-w-6xl mx-auto ">
             <Swiper
               modules={[Navigation, Pagination, Autoplay]}
               spaceBetween={20}
@@ -618,52 +647,64 @@ const App = () => {
               className="relative"
             >
               <SwiperSlide>
-                <div className="bg-[#e6f4ea] border-2 border-[#d1c4e9] rounded-lg p-5 text-center shadow-lg">
-                  <h3 className="text-[#4caf50] mb-4 text-2xl font-bold">AKSIYA !</h3>
-                  <p className="text-[#333] text-base leading-6">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum natus labore est eaque sequi omnis nobis magni optio tempore voluptatem rem, quod pariatur deserunt voluptas saepe consequatur debitis dolores odio atque libero maiores voluptates commodi. Soluta natus aliquid, vitae sunt assumenda, optio autem odio, fugiat molestiae esse fuga saepe repellat.
-                  </p>
+                <div className="h-[70vh] w-full flex items-center justify-center">
+                  <iframe
+                    className="w-full max-w-4xl h-[60vh] rounded-xl shadow-lg"
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1"
+                    title="AKSIYA Video 1"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
                 </div>
               </SwiperSlide>
+
               <SwiperSlide>
-                <div className="bg-[#e6f4ea] border-2 border-[#d1c4e9] rounded-lg p-5 text-center shadow-lg">
-                  <h3 className="text-[#4caf50] mb-4 text-2xl font-bold">AKSIYA !</h3>
-                  <p className="text-[#333] text-base leading-6">
-                    Успешное обучение, сертификат на это окно-ученик у разработчиков при этом.
-                  </p>
+                <div className="h-[70vh] w-full flex items-center justify-center">
+                  <iframe
+                    className="w-full max-w-4xl h-[60vh] rounded-xl shadow-lg"
+                    src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1"
+                    title="AKSIYA Video 2"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
                 </div>
               </SwiperSlide>
+
               <SwiperSlide>
-                <div className="bg-[#e6f4ea] border-2 border-[#d1c4e9] rounded-lg p-5 text-center shadow-lg">
-                  <h3 className="text-[#4caf50] mb-4 text-2xl font-bold">AKSIYA !</h3>
-                  <p className="text-[#333] text-base leading-6">
-                    Екатеринбург, более 2000 кандидатов-благотворителей проводились.
-                  </p>
+                <div className="h-[70vh] w-full flex items-center justify-center">
+                  <iframe
+                    className="w-full max-w-4xl h-[60vh] rounded-xl shadow-lg"
+                    src="https://www.youtube.com/embed/ScMzIvxBSi4?autoplay=1&mute=1"
+                    title="AKSIYA Video 3"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
                 </div>
               </SwiperSlide>
+
               <SwiperSlide>
-                <div className="bg-[#e6f4ea] border-2 border-[#d1c4e9] rounded-lg p-5 text-center shadow-lg">
-                  <h3 className="text-[#4caf50] mb-4 text-2xl font-bold">AKSIYA !</h3>
-                  <p className="text-[#333] text-base leading-6">
-                    Наши предварительные итоговые результаты включают предварительные
-                  </p>
+                <div className="h-[70vh] w-full flex items-center justify-center">
+                  <iframe
+                    className="w-full max-w-4xl h-[60vh] rounded-xl shadow-lg"
+                    src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1"
+                    title="AKSIYA Video 4"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
                 </div>
               </SwiperSlide>
-              <SwiperSlide>
-                <div className="bg-[#e6f4ea] border-2 border-[#d1c4e9] rounded-lg p-5 text-center shadow-lg">
-                  <h3 className="text-[#4caf50] mb-4 text-2xl font-bold">AKSIYA !</h3>
-                  <p className="text-[#333] text-base leading-6">
-                    Успешное обучение, сертификат на это окно-ученик у разработчиков при этом.
-                  </p>
-                </div>
-              </SwiperSlide>
+
             </Swiper>
           </div>
         </section>
 
         <section>
           <div
-            className="w-full px-5 bg-white rounded-2xl shadow-lg flex items-center justify-center"
+            className="w-full px-5 rounded-2xl shadow-lg flex items-center justify-center"
             data-aos="fade-right"
             data-aos-duration="800"
           >
