@@ -12,7 +12,9 @@ import AboutImg from "./assets/aboutus.png"
 import AOS from 'aos';
 import { FaUser } from "react-icons/fa";
 import { IoCallSharp } from "react-icons/io5";
-import { FaCheck, FaTimes, FaClock, FaUtensils, FaCertificate, FaRegClock, FaCalendarAlt, FaClipboardList } from "react-icons/fa";
+import { FaCheck, FaTimes, FaClock, FaUtensils, FaCertificate, FaRegClock, FaCalendarAlt, FaInstagram, FaClipboardList, FaTelegramPlane } from "react-icons/fa";
+import { IoLocationSharp, IoCall } from "react-icons/io5";
+import { CgMail } from "react-icons/cg";
 import Xona1 from "./assets/hona 1.png"
 import Xona2 from "./assets/hona 2.png"
 import Xona3 from "./assets/hona 3.png"
@@ -93,76 +95,77 @@ const App = () => {
     },
   ];
 
-  const toggle = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-  const sections = [
-    {
-      title: "BIRINCHI YORDAM KO'RSATISH",
-      content: [
-        "Pulsni hisoblash, qon bosimini o'lchash, gipertonik inqiroz, hushidan ketish",
-        "Bronxial astma hujumi, nafas olish tizimiga begona jismlarning kirishi",
-        "Birlamchi kardiopulmoner reanimatsiya",
-        "Hayot va o'lim belgilari",
-        "Oziq-ovqat zaharlanishi, spirtli ichimliklar bilan zaharlanish, uglerod oksidi bilan zaharlanish",
-        "Issiqlik va quyosh urishi, elektr shikastlanishi. Quyosh urishining oldini olish",
-        "Epilepsiya hujumlari",
-        "Kaltsiy xloridni qabul qilish",
-        "Gipertermiya. Litik aralashmaning diagrammasi",
-        "Anafilaktik shok",
-        "Kuyish va muzlash",
-        "Allergiya, allergiya testlari. Quincke shishi uchun birinchi yordam.",
-        "Qon ketish, ko'karishlar, dislokatsiyalar va sinishlar",
-      ],
-    },
-    {
-      title: "INJEKSIYA TEXNIKALARINI AMAL QILING",
-      content: [
-        "Biz in'ektsiya texnikasi va mahoratiga alohida e'tibor beramiz!",
-        "Mushak ichiga in'ektsiya",
-        "Teri osti in'ektsiyalari",
-        "Intradermal in'ektsiya",
-        "Tomir ichiga yuborish",
-      ],
-    },
-    {
-      title: "DESMURGIYA ASOSLARINI O'RGANISH",
-      content: [
-        "Har xil turdagi bintlarni o'rganamiz",
-        "Biz ko'nikmalarni mashq qilamiz",
-      ],
-    },
-    {
-      title: "YANGI TUG‘ILGANLARGA G‘AMXO‘RLIK QILISH",
-      content: [
-        "Yangi tug‘ilgan chaqaloqlarning rivojlanish xususiyatlari",
-        "Kindik ichakni davolash texnikasi",
-        "Yangi tug‘ilgan chaqaloqlarni cho‘milish va ovqatlantirish",
-      ],
-    },
-    {
-      title: "KEKSALAR VA KASALLARGA G‘AMXO‘RLIK",
-      content: [
-        "Qariyalar va kasallarga g'amxo'rlik qilish",
-        "Yotoq yaralarining oldini olish",
-      ],
-    },
-  ];
+  // const toggle = (index) => {
+  //   setOpenIndex(openIndex === index ? null : index);
+  // };
+  // const sections = [
+  //   {
+  //     title: "BIRINCHI YORDAM KO'RSATISH",
+  //     content: [
+  //       "Pulsni hisoblash, qon bosimini o'lchash, gipertonik inqiroz, hushidan ketish",
+  //       "Bronxial astma hujumi, nafas olish tizimiga begona jismlarning kirishi",
+  //       "Birlamchi kardiopulmoner reanimatsiya",
+  //       "Hayot va o'lim belgilari",
+  //       "Oziq-ovqat zaharlanishi, spirtli ichimliklar bilan zaharlanish, uglerod oksidi bilan zaharlanish",
+  //       "Issiqlik va quyosh urishi, elektr shikastlanishi. Quyosh urishining oldini olish",
+  //       "Epilepsiya hujumlari",
+  //       "Kaltsiy xloridni qabul qilish",
+  //       "Gipertermiya. Litik aralashmaning diagrammasi",
+  //       "Anafilaktik shok",
+  //       "Kuyish va muzlash",
+  //       "Allergiya, allergiya testlari. Quincke shishi uchun birinchi yordam.",
+  //       "Qon ketish, ko'karishlar, dislokatsiyalar va sinishlar",
+  //     ],
+  //   },
+  //   {
+  //     title: "INJEKSIYA TEXNIKALARINI AMAL QILING",
+  //     content: [
+  //       "Biz in'ektsiya texnikasi va mahoratiga alohida e'tibor beramiz!",
+  //       "Mushak ichiga in'ektsiya",
+  //       "Teri osti in'ektsiyalari",
+  //       "Intradermal in'ektsiya",
+  //       "Tomir ichiga yuborish",
+  //     ],
+  //   },
+  //   {
+  //     title: "DESMURGIYA ASOSLARINI O'RGANISH",
+  //     content: [
+  //       "Har xil turdagi bintlarni o'rganamiz",
+  //       "Biz ko'nikmalarni mashq qilamiz",
+  //     ],
+  //   },
+  //   {
+  //     title: "YANGI TUG‘ILGANLARGA G‘AMXO‘RLIK QILISH",
+  //     content: [
+  //       "Yangi tug‘ilgan chaqaloqlarning rivojlanish xususiyatlari",
+  //       "Kindik ichakni davolash texnikasi",
+  //       "Yangi tug‘ilgan chaqaloqlarni cho‘milish va ovqatlantirish",
+  //     ],
+  //   },
+  //   {
+  //     title: "KEKSALAR VA KASALLARGA G‘AMXO‘RLIK",
+  //     content: [
+  //       "Qariyalar va kasallarga g'amxo'rlik qilish",
+  //       "Yotoq yaralarining oldini olish",
+  //     ],
+  //   },
+  // ];
 
   return (
     <>
-      <header className=" px-14 border-green-100 shadow-sm">
-        <div className='flex items-center justify-between py-5'>
+      <header className=" border-green-100 shadow-sm">
+        <div className='flex items-center container mx-auto gap-80 py-5'>
 
           <div>
             <img src={LogoImg} alt="" />
           </div>
 
           <nav className='py-5'>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex gap-x-20 justify-center text-sm font-medium text-gray-700">
+            <div className=" py-2 flex gap-x-20  text-sm font-medium text-gray-700">
               <a href="#" className="hover:text-green-600 text-base font-bold">Biz haqimizda</a>
               <a href="#" className="hover:text-green-600 text-base font-bold">Kurslar</a>
               <a href="#" className="hover:text-green-600 text-base font-bold">Afzalliklar</a>
+              <a href="#" className="hover:text-green-600 text-base font-bold">Xonalar</a>
               <a href="#" className="hover:text-green-600 text-base font-bold">Bog’lanish</a>
             </div>
           </nav>
@@ -171,73 +174,75 @@ const App = () => {
       </header>
 
       <main>
-        <section className="bg-green-50 py-16">
-          <div className=" gap-48 px-20 flex  items-center justify-between">
-            <div className="lg:w-1/2 mb-8 lg:mb-0">
-              <p className="text-gray-600 text-xl font-semibold mb-2">Samarqand</p>
+        <section className="bg-green-50 py-16 ">
+          <div className='container mx-auto'>
+            <div className=" gap-48 px-20 flex  items-center justify-between">
+              <div className="lg:w-1/2 mb-8 lg:mb-0">
+                <p className="text-gray-600 text-xl font-semibold mb-2">Samarqand</p>
 
-              <h1 className="text-5xl font-bold text-green-700 mb-4 leading-tight">MALAKA OSHIRISH <br /> KURSLARI</h1>
-              <p className="text-gray-700 mb-6">
-                Malaka oshirish kurslarini 35 yillik <br /> tajribaga ega Hodjaqulova Nasiba <br /> Sharofiddinovna tomonidan o’tiladi.
-              </p>
-              <div className="flex space-x-4">
-                <button className="bg-green-600 text-white px-20 py-2 rounded hover:bg-green-700 transition">
-                  Bog’lanish
-                </button>
-                <button className="border border-green-600 text-green-600 px-20 py-2 rounded hover:bg-green-100 transition">
-                  Batafsil
-                </button>
-              </div>
-            </div>
-
-            <div className="lg:w-1/2 flex justify-center">
-              <img src={Nurses} alt="Women Group" className="max-h-[400px] object-contain" />
-            </div>
-          </div>
-
-          <div className="flex justify-center ">
-            <div className="bg-white absolute shadow-xl rounded-2xl p-10 w-full max-w-[1400px] flex flex-col md:flex-row items-center gap-6">
-
-              {/* Ism Input */}
-              <div className="flex items-center border-r border-gray-300 pb-2 pl-5 gap-5 w-full md:w-[30%]">
-                <FaUser className="text-[#007360] text-3xl mr-2" />
-                <div>
-                  <h1 className='text-xl font-bold'>Sizning Ismingiz</h1>
-                  <input
-                    type="text"
-                    placeholder="Ismingiz"
-                    className="bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none w-full"
-                    pattern="[A-Za-z\u0400-\u04FF\s]+"
-                    inputMode="text"
-                    onChange={(e) =>
-                      setName(e.target.value.replace(/[^A-Za-z\u0400-\u04FF\s]/g, ""))
-                    }
-                    maxLength={20}
-                  />
+                <h1 className="text-5xl font-bold text-green-700 mb-4 leading-tight">MALAKA OSHIRISH <br /> KURSLARI</h1>
+                <p className="text-gray-700 mb-6">
+                  Malaka oshirish kurslarini 35 yillik <br /> tajribaga ega Hodjaqulova Nasiba <br /> Sharofiddinovna tomonidan o’tiladi.
+                </p>
+                <div className="flex space-x-4">
+                  <button className="bg-green-600 text-white px-20 py-2 rounded hover:bg-green-700 transition">
+                    Bog’lanish
+                  </button>
+                  <button className="border border-green-600 text-green-600 px-20 py-2 rounded hover:bg-green-100 transition">
+                    Batafsil
+                  </button>
                 </div>
               </div>
 
-              {/* Telefon Input */}
-              <div className="flex items-center border-r border-gray-300 pb-2 pl-5 gap-5 w-full md:w-[30%]">
-                <IoCallSharp className="text-[#007360] text-3xl mr-2" />
-                <div className="w-full">
-                  <h1 className="text-xl font-bold">Telefon raqamingiz</h1>
-                  <input
-                    type="number"
-                    placeholder="99 999 99 99"
-                    className="bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none w-full"
-                  />
+              <div className="lg:w-1/2 flex justify-center">
+                <img src={Nurses} alt="Women Group" className="max-h-[400px] object-contain" />
+              </div>
+            </div>
+
+            <div className="flex justify-center ">
+              <div className="bg-white absolute shadow-xl rounded-2xl p-10 w-full max-w-[1400px] flex flex-col md:flex-row items-center gap-6">
+
+                {/* Ism Input */}
+                <div className="flex items-center border-r border-gray-300 pb-2 pl-5 gap-5 w-full md:w-[30%]">
+                  <FaUser className="text-[#007360] text-3xl mr-2" />
+                  <div>
+                    <h1 className='text-xl font-bold'>Sizning Ismingiz</h1>
+                    <input
+                      type="text"
+                      placeholder="Ismingiz"
+                      className="bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none w-full"
+                      pattern="[A-Za-z\u0400-\u04FF\s]+"
+                      inputMode="text"
+                      onChange={(e) =>
+                        setName(e.target.value.replace(/[^A-Za-z\u0400-\u04FF\s]/g, ""))
+                      }
+                      maxLength={20}
+                    />
+                  </div>
                 </div>
+
+                {/* Telefon Input */}
+                <div className="flex items-center border-r border-gray-300 pb-2 pl-5 gap-5 w-full md:w-[30%]">
+                  <IoCallSharp className="text-[#007360] text-3xl mr-2" />
+                  <div className="w-full">
+                    <h1 className="text-xl font-bold">Telefon raqamingiz</h1>
+                    <input
+                      type="number"
+                      placeholder="99 999 99 99"
+                      className="bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none w-full"
+                    />
+                  </div>
+                </div>
+
+
+                {/* Button */}
+                <div className="w-full md:w-auto pl-20">
+                  <button className="bg-[#007360] hover:bg-[#005e4c] cursor-pointer text-white font-semibold px-20  py-2 rounded-xl w-full md:w-auto transition-all duration-300">
+                    Yuborish
+                  </button>
+                </div>
+
               </div>
-
-
-              {/* Button */}
-              <div className="w-full md:w-auto pl-20">
-                <button className="bg-[#007360] hover:bg-[#005e4c] cursor-pointer text-white font-semibold px-20  py-2 rounded-xl w-full md:w-auto transition-all duration-300">
-                  Yuborish
-                </button>
-              </div>
-
             </div>
           </div>
 
@@ -245,7 +250,7 @@ const App = () => {
 
         <section>
 
-          <div className='bg-[#EEEEEE] py-16'>
+          <div className='py-16'>
             <div className='relative'>
               <img className='absolute -top-16 right-0 z-0' src={bgimg} alt="" />
             </div>
@@ -324,7 +329,7 @@ const App = () => {
         </section>
 
         <section className="bg-[#EEEEEE] py-16">
-          <div className="flex flex-col md:flex-row items-center justify-between px-28 gap-10">
+          <div className="flex flex-col container mx-auto md:flex-row items-center justify-between px-28 gap-10">
 
             {/* Left Image */}
             <div>
@@ -363,66 +368,68 @@ const App = () => {
         </section>
 
         <section className="py-16 px-6 md:px-16  ">
-          <h1 className='text-[38px] text-center font-black text-[#007360] mb-5'>HAMSHIRALARNI O'QITISH DASTURI</h1>
-          <div className="md:flex ">
-            {/* Accordion */}
-            <div className="flex-1 space-y-4 bg-[#007360] py-5 px-5">
-              {accordionData.map((item, index) => (
-                <div key={index}>
-                  <button
-                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                    className="w-full text-left p-4 flex justify-between items-center font-semibold text-white"
-                  >
-                    {item.title}
-                    <span className="text-xl">{openIndex === index ? "-" : "+"}</span>
-                  </button>
-                  {openIndex === index && (
-                    <div className="p-4 text-white text-sm">{item.content}</div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Cards */}
-            <div className="flex-1 grid grid-cols-2 gap-4 border-2 border-[#007360] py-10 px-10">
-              {cards.map((card, index) => (
-                <div
-                  key={index}
-                  className="group flex flex-col items-center gap-2 p-4 border rounded-lg bg-white text-black hover:bg-[#007360] hover:text-white cursor-pointer transition duration-300"
-                >
-                  <div className="text-xl flex justify-center mb-3">
-                    {React.cloneElement(card.icon, {
-                      className: "text-[#007360] group-hover:text-white transition duration-300",
-                    })}
+          <div className='container mx-auto'>
+            <h1 className='text-[38px] text-center font-black text-[#007360] mb-5'>HAMSHIRALARNI O'QITISH DASTURI</h1>
+            <div className="md:flex ">
+              {/* Accordion */}
+              <div className="flex-1 space-y-4 bg-[#007360] py-5 px-5">
+                {accordionData.map((item, index) => (
+                  <div key={index}>
+                    <button
+                      onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                      className="w-full text-left p-4 flex justify-between items-center font-semibold text-white"
+                    >
+                      {item.title}
+                      <span className="text-xl">{openIndex === index ? "-" : "+"}</span>
+                    </button>
+                    {openIndex === index && (
+                      <div className="p-4 text-white text-sm">{item.content}</div>
+                    )}
                   </div>
-                  <p className="text-sm text-center font-medium">{card.text}</p>
-                </div>
-              ))}
-            </div>
-
-          </div>
-
-          {/* Dars Jadvali */}
-          <div className="bg-[#007360] text-white p-6">
-            <h3 className="text-3xl font-bold text-center mb-4">DARS JADVALI</h3>
-            <div className="grid grid-cols-7 text-center text-sm font-semibold">
-              {days.map((day, index) => (
-                <div key={index} className="py-2 border border-white">
-                  <div className='border-b text-xl font-bold'>{day.name}</div>
-                  <div className="text-lg mt-1">
-                    {day.hasClass ? <FaCheck className="text-green-300 mx-auto" /> : <FaTimes className="text-red-400 mx-auto" />}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Additional info */}
-            <div className="flex justify-center gap-20 mt-10 text-sm">
-              <div className="flex items-center gap-2">
-                <FaCalendarAlt className='text-2xl' /> <span className='text-xl font-semibold'>Haftada 3 kun</span>
+                ))}
               </div>
-              <div className="flex items-center gap-2">
-                <FaClock className='text-2xl' /> <span className='text-xl font-semibold'>4 soat</span>
+
+              {/* Cards */}
+              <div className="flex-1 grid grid-cols-2 gap-4 border-2 border-[#007360] py-10 px-10">
+                {cards.map((card, index) => (
+                  <div
+                    key={index}
+                    className="group flex flex-col items-center gap-2 p-4 border rounded-lg bg-white text-black hover:bg-[#007360] hover:text-white cursor-pointer transition duration-300"
+                  >
+                    <div className="text-xl flex justify-center mb-3">
+                      {React.cloneElement(card.icon, {
+                        className: "text-[#007360] group-hover:text-white transition duration-300",
+                      })}
+                    </div>
+                    <p className="text-sm text-center font-medium">{card.text}</p>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+
+            {/* Dars Jadvali */}
+            <div className="bg-[#007360] text-white p-6">
+              <h3 className="text-3xl font-bold text-center mb-4">DARS JADVALI</h3>
+              <div className="grid grid-cols-7 text-center text-sm font-semibold">
+                {days.map((day, index) => (
+                  <div key={index} className="py-2 border border-white">
+                    <div className='border-b text-xl font-bold'>{day.name}</div>
+                    <div className="text-lg mt-1">
+                      {day.hasClass ? <FaCheck className="text-green-300 mx-auto" /> : <FaTimes className="text-red-400 mx-auto" />}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Additional info */}
+              <div className="flex justify-center gap-20 mt-10 text-sm">
+                <div className="flex items-center gap-2">
+                  <FaCalendarAlt className='text-2xl' /> <span className='text-xl font-semibold'>Haftada 3 kun</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <FaClock className='text-2xl' /> <span className='text-xl font-semibold'>4 soat</span>
+                </div>
               </div>
             </div>
           </div>
@@ -435,9 +442,10 @@ const App = () => {
             {features.map((item, idx) => (
               <div
                 key={idx}
-                className={`relative p-6 rounded-xl shadow-md overflow-hidden transition duration-300 ${item.highlight
-                  ? "bg-[#007360] text-white"
-                  : "bg-white text-gray-800 hover:shadow-lg"
+                className={`relative p-6 rounded-xl shadow-md overflow-hidden transition duration-300 transform 
+      ${item.highlight
+                    ? "bg-[#007360] text-white hover:hover:scale-105 hover:-translate-y-1.5 cursor-pointer"
+                    : "bg-white text-gray-800 hover:shadow-lg hover:scale-105 hover:-translate-y-1.5 cursor-pointer"
                   }`}
               >
                 {/* Background Number */}
@@ -450,70 +458,73 @@ const App = () => {
                 <p className="text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}
+
           </div>
         </section>
 
         <section className="py-16 px-6 md:px-16  ">
-          <h1 className='text-[38px] text-center font-black text-[#007360] mb-5'>IGNA REFLEKSOTERAPİYASI O'QITISH DASTURI</h1>
-          <div className="md:flex ">
-            {/* Accordion */}
-            <div className="flex-1 space-y-4 bg-[#007360] py-5 px-5">
-              {accordionData.map((item, index) => (
-                <div key={index}>
-                  <button
-                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                    className="w-full text-left p-4 flex justify-between items-center font-semibold text-white"
-                  >
-                    {item.title}
-                    <span className="text-xl">{openIndex === index ? "-" : "+"}</span>
-                  </button>
-                  {openIndex === index && (
-                    <div className="p-4 text-white text-sm">{item.content}</div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Cards */}
-            <div className="flex-1 grid grid-cols-2 gap-4 border-2 border-[#007360] py-10 px-10">
-              {cards.map((card, index) => (
-                <div
-                  key={index}
-                  className="group flex flex-col items-center gap-2 p-4 border rounded-lg bg-white text-black hover:bg-[#007360] hover:text-white cursor-pointer transition duration-300"
-                >
-                  <div className="text-xl flex justify-center mb-3">
-                    {React.cloneElement(card.icon, {
-                      className: "text-[#007360] group-hover:text-white transition duration-300",
-                    })}
+          <div className='container mx-auto'>
+            <h1 className='text-[38px] text-center font-black text-[#007360] mb-5'>IGNA REFLEKSOTERAPİYASI O'QITISH DASTURI</h1>
+            <div className="md:flex ">
+              {/* Accordion */}
+              <div className="flex-1 space-y-4 bg-[#007360] py-5 px-5">
+                {accordionData.map((item, index) => (
+                  <div key={index}>
+                    <button
+                      onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                      className="w-full text-left p-4 flex justify-between items-center font-semibold text-white"
+                    >
+                      {item.title}
+                      <span className="text-xl">{openIndex === index ? "-" : "+"}</span>
+                    </button>
+                    {openIndex === index && (
+                      <div className="p-4 text-white text-sm">{item.content}</div>
+                    )}
                   </div>
-                  <p className="text-sm text-center font-medium">{card.text}</p>
-                </div>
-              ))}
-            </div>
-
-          </div>
-
-          {/* Dars Jadvali */}
-          <div className="bg-[#007360] text-white p-6">
-            <h3 className="text-3xl font-bold text-center mb-4">DARS JADVALI</h3>
-            <div className="grid grid-cols-7 text-center text-sm font-semibold">
-              {days.map((day, index) => (
-                <div key={index} className="py-2 border border-white">
-                  <div className='border-b text-xl font-bold'>{day.name}</div>
-                  <div className="text-lg mt-1">
-                    {day.hasClass ? <FaCheck className="text-green-300 mx-auto" /> : <FaTimes className="text-red-400 mx-auto" />}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Additional info */}
-            <div className="flex justify-center gap-20 mt-10 text-sm">
-              <div className="flex items-center gap-2">
-                <FaCalendarAlt className='text-2xl' /> <span className='text-xl font-semibold'>Haftada 3 kun</span>
+                ))}
               </div>
-              <div className="flex items-center gap-2">
-                <FaClock className='text-2xl' /> <span className='text-xl font-semibold'>4 soat</span>
+
+              {/* Cards */}
+              <div className="flex-1 grid grid-cols-2 gap-4 border-2 border-[#007360] py-10 px-10">
+                {cards.map((card, index) => (
+                  <div
+                    key={index}
+                    className="group flex flex-col items-center gap-2 p-4 border rounded-lg bg-white text-black hover:bg-[#007360] hover:text-white cursor-pointer transition duration-300"
+                  >
+                    <div className="text-xl flex justify-center mb-3">
+                      {React.cloneElement(card.icon, {
+                        className: "text-[#007360] group-hover:text-white transition duration-300",
+                      })}
+                    </div>
+                    <p className="text-sm text-center font-medium">{card.text}</p>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+
+            {/* Dars Jadvali */}
+            <div className="bg-[#007360] text-white p-6">
+              <h3 className="text-3xl font-bold text-center mb-4">DARS JADVALI</h3>
+              <div className="grid grid-cols-7 text-center text-sm font-semibold">
+                {days.map((day, index) => (
+                  <div key={index} className="py-2 border border-white">
+                    <div className='border-b text-xl font-bold'>{day.name}</div>
+                    <div className="text-lg mt-1">
+                      {day.hasClass ? <FaCheck className="text-green-300 mx-auto" /> : <FaTimes className="text-red-400 mx-auto" />}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Additional info */}
+              <div className="flex justify-center gap-20 mt-10 text-sm">
+                <div className="flex items-center gap-2">
+                  <FaCalendarAlt className='text-2xl' /> <span className='text-xl font-semibold'>Haftada 3 kun</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <FaClock className='text-2xl' /> <span className='text-xl font-semibold'>4 soat</span>
+                </div>
               </div>
             </div>
           </div>
@@ -702,43 +713,95 @@ const App = () => {
           </div>
         </section>
 
-        <section>
-          <div
-            className="w-full px-5 rounded-2xl shadow-lg flex items-center justify-center"
-            data-aos="fade-right"
-            data-aos-duration="800"
-          >
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6090.994748927668!2d72.3307203!3d40.8011046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb85f1c4d10b11%3A0xb8bdf7a53d26a0c3!2sPasport%20Stol%20%E2%84%962!5e0!3m2!1sru!2s!4v1714036123456!5m2!1sru!2s"
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+        <section className="w-full">
+          <div className="w-full items-center gap-8 flex justify-between">
+
+            {/* Chap tomonda matn */}
+            <div className="flex justify-center px-10">
+              <div>
+                <div className='flex items-center gap-3 mb-2'>
+                  <IoLocationSharp className='text-2xl text-[#007360]' />
+                  <h2 className="text-2xl font-semibold text-[#007360] ">Bizning manzil</h2>
+                </div>
+                <p className="text-[#007360] font-semibold mb-5">
+                  Amir Temur shox ko'chasi, 107 B-uy, Toshkent, O'zbekiston
+                </p>
+                <p className="text-gray-600">
+                  <div className='flex items-center gap-3 mb-2'>
+                    <CgMail className='text-2xl text-[#007360]' />
+                    <h1 className='text-2xl font-medium text-[#007360]'>Elektron pochta:</h1>
+                  </div>
+                  <p className='text-xl font-semibold text-[#007360] mb-5'>example@mail.uz</p>
+                </p>
+
+                <div>
+                  <div className='flex items-center gap-3 mb-2'>
+                    <IoCall className='text-2xl text-[#007360]' />
+                    <h1 className='text-xl font-medium text-[#007360]'>Telefon</h1>
+                  </div>
+                  <a href="tel:+998935533352" className="text-[#007360] font-bold hover:underline">+998 93 553 33 52</a>
+                </div>
+
+              </div>
+            </div>
+
+            {/* O‘ng tomonda Google Maps */}
+            <div className="w-full lg:w-1/2 h-full">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6090.994748927668!2d72.3307203!3d40.8011046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb85f1c4d10b11%3A0xb8bdf7a53d26a0c3!2sPasport%20Stol%20%E2%84%962!5e0!3m2!1sru!2s!4v1714036123456!5m2!1sru!2s"
+                width="100%"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
           </div>
         </section>
 
+
       </main >
 
-      <footer className="w-full bg-[#e6f4ea] border-t-2 border-[#d1c4e9] py-6">
-        <div className="max-w-6xl mx-auto text-center">
-          <h3 className="text-[#4caf50] text-2xl font-bold mb-4">"SHIFOKOR OQUV MARKAZI" o'quv markazi</h3>
-          <p className="text-[#333] mb-2">
-            Samarqand, Termizskaya ko'chasi 67A, O'zbekiston
-          </p>
-          <p className="text-[#333] mb-2">
-            Telefon: <a href="tel:+998976110604" className="text-[#4caf50] hover:underline">+998 97 611 06 04</a>
-          </p>
-          <p className="text-[#333] mb-2">
-            Dushanba - Shanba 9:00 - 17:00 | Yakshanba: dam olish kuni
-          </p>
-          <p className="text-[#333] text-sm mt-4">
-            © SHIFOKOR OQUV MARKAZI 2025
-          </p>
+      <footer className="bg-[#0A5548] ">
+        <div className="flex flex-col md:flex-row text-white container mx-auto py-10 px-10 justify-between gap-8">
+
+          {/* Logo */}
+          <div>
+            <img src={LogoImg} alt="Logo" className="w-32 mb-4" />
+          </div>
+
+          {/* Kontaktlar */}
+          <div>
+            <h1 className="text-lg font-semibold mb-2">Kontaktlar</h1>
+            <p className="text-sm">Toshkent, Yunusobod</p>
+            <p className="text-sm">+998 00 000 00 00</p>
+          </div>
+
+          {/* Linklar */}
+          <div>
+            <h1 className="text-lg font-semibold mb-2">Linklar</h1>
+            <a href="#" className="text-sm block hover:underline">Biz haqimizda</a>
+            <a href="#" className="text-sm block hover:underline">Hizmatlar</a>
+          </div>
+
+          {/* Medialar */}
+          <div>
+            <h1 className="text-lg font-semibold mb-2">Medialar</h1>
+            <div className="flex gap-3 text-2xl">
+              <FaTelegramPlane className="cursor-pointer hover:text-gray-300" />
+              <FaInstagram className="cursor-pointer hover:text-gray-300" />
+            </div>
+          </div>
+
+        </div>
+        <div className='flex justify-center text-white '>
+          <h1 className='mr-2 font-normal'>© SHIFOKOR OQUV MARKAZI 2025 </h1>
+          <span> | </span>
+          <a href="" className='ml-2 font-normal'> IPro Group Support</a>
         </div>
       </footer>
+
 
 
     </>
