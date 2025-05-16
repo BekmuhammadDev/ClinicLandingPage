@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import bgimg from "./assets/bgimg.png"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css'; // Swiperning asosiy CSS fayli
@@ -12,7 +12,7 @@ import AboutImg from "./assets/aboutus.png"
 import AOS from 'aos';
 import { FaUser } from "react-icons/fa";
 import { IoCallSharp } from "react-icons/io5";
-import { FaCheck, FaTimes, FaClock, FaUtensils, FaCertificate, FaRegClock, FaCalendarAlt, FaInstagram, FaClipboardList, FaTelegramPlane } from "react-icons/fa";
+import { FaCheck, FaTimes, FaGlobe, FaClock, FaUtensils, FaCertificate, FaRegClock, FaCalendarAlt, FaInstagram, FaClipboardList, FaTelegramPlane } from "react-icons/fa";
 import { IoLocationSharp, IoCall } from "react-icons/io5";
 import { CgMail } from "react-icons/cg";
 import Xona1 from "./assets/hona 1.png"
@@ -21,10 +21,61 @@ import Xona3 from "./assets/hona 3.png"
 import Xona4 from "./assets/hona 4.png"
 import Litsenziya from "./assets/litsenziya.svg"
 import BgLitsenziya from "./assets/bgiimglit.png"
+import { FiMenu, FiX } from "react-icons/fi";
+import emailjs from '@emailjs/browser';
+import LogoWhite from "./assets/LogoWhite.png"
+import { useTranslation } from 'react-i18next';
+
 
 const App = () => {
 
   const [openIndex, setOpenIndex] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [language, setLanguage] = useState('uz');
+  const { t, i18n } = useTranslation();
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        'service_zarp7qs',   // service ID
+        'template_n9y64se',  // template ID
+        form.current,
+        '7STayiENTcu0WLfMR'  // public key
+      )
+      .then(
+        (result) => {
+          console.log('Email sent!', result.text);
+          alert('Xabar yuborildi!');
+          form.current.reset(); // Formani tozalash
+        },
+        (error) => {
+          console.log('Error:', error.text);
+          alert('Xatolik yuz berdi!');
+        }
+      );
+  };
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // animatsiya davomiyligi (ms)
+      once: true,     // sahifa qayta ko‘rilganda faqat bir marta ishlaydi
+    });
+  }, []);
+
+  const toggleLanguage = () => {
+    const newLang = language === 'uz' ? 'ru' : 'uz';
+    setLanguage(newLang);
+    i18n.changeLanguage(newLang);
+  };
+
+  useEffect(() => {
+    setLanguage(i18n.language || 'uz');
+  }, [i18n.language]);
 
   const accordionData = [
     {
@@ -65,6 +116,16 @@ const App = () => {
 
   const days = [
     { name: "Du", hasClass: true },
+    { name: "SE", hasClass: false },
+    { name: "Ch", hasClass: true },
+    { name: "Pa", hasClass: false },
+    { name: "Ju", hasClass: true },
+    { name: "Sh", hasClass: false },
+    { name: "Ya", hasClass: false },
+  ];
+
+  const daysIg = [
+    { name: "Du", hasClass: true },
     { name: "SE", hasClass: true },
     { name: "Ch", hasClass: true },
     { name: "Pa", hasClass: true },
@@ -95,181 +156,284 @@ const App = () => {
     },
   ];
 
-  // const toggle = (index) => {
-  //   setOpenIndex(openIndex === index ? null : index);
-  // };
-  // const sections = [
-  //   {
-  //     title: "BIRINCHI YORDAM KO'RSATISH",
-  //     content: [
-  //       "Pulsni hisoblash, qon bosimini o'lchash, gipertonik inqiroz, hushidan ketish",
-  //       "Bronxial astma hujumi, nafas olish tizimiga begona jismlarning kirishi",
-  //       "Birlamchi kardiopulmoner reanimatsiya",
-  //       "Hayot va o'lim belgilari",
-  //       "Oziq-ovqat zaharlanishi, spirtli ichimliklar bilan zaharlanish, uglerod oksidi bilan zaharlanish",
-  //       "Issiqlik va quyosh urishi, elektr shikastlanishi. Quyosh urishining oldini olish",
-  //       "Epilepsiya hujumlari",
-  //       "Kaltsiy xloridni qabul qilish",
-  //       "Gipertermiya. Litik aralashmaning diagrammasi",
-  //       "Anafilaktik shok",
-  //       "Kuyish va muzlash",
-  //       "Allergiya, allergiya testlari. Quincke shishi uchun birinchi yordam.",
-  //       "Qon ketish, ko'karishlar, dislokatsiyalar va sinishlar",
-  //     ],
-  //   },
-  //   {
-  //     title: "INJEKSIYA TEXNIKALARINI AMAL QILING",
-  //     content: [
-  //       "Biz in'ektsiya texnikasi va mahoratiga alohida e'tibor beramiz!",
-  //       "Mushak ichiga in'ektsiya",
-  //       "Teri osti in'ektsiyalari",
-  //       "Intradermal in'ektsiya",
-  //       "Tomir ichiga yuborish",
-  //     ],
-  //   },
-  //   {
-  //     title: "DESMURGIYA ASOSLARINI O'RGANISH",
-  //     content: [
-  //       "Har xil turdagi bintlarni o'rganamiz",
-  //       "Biz ko'nikmalarni mashq qilamiz",
-  //     ],
-  //   },
-  //   {
-  //     title: "YANGI TUG‘ILGANLARGA G‘AMXO‘RLIK QILISH",
-  //     content: [
-  //       "Yangi tug‘ilgan chaqaloqlarning rivojlanish xususiyatlari",
-  //       "Kindik ichakni davolash texnikasi",
-  //       "Yangi tug‘ilgan chaqaloqlarni cho‘milish va ovqatlantirish",
-  //     ],
-  //   },
-  //   {
-  //     title: "KEKSALAR VA KASALLARGA G‘AMXO‘RLIK",
-  //     content: [
-  //       "Qariyalar va kasallarga g'amxo'rlik qilish",
-  //       "Yotoq yaralarining oldini olish",
-  //     ],
-  //   },
-  // ];
 
   return (
     <>
-      <header className=" border-green-100 shadow-sm">
-        <div className='flex items-center container mx-auto gap-80 py-5'>
-
-          <div>
-            <img src={LogoImg} alt="" />
+      <header className="border-b border-green-100 shadow-sm bg-white">
+        <div className="container mx-auto flex justify-between items-center py-4 px-10 md:px-8">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <img src={LogoImg} alt="Logo" className="h-10 w-auto" />
           </div>
 
-          <nav className='py-5'>
-            <div className=" py-2 flex gap-x-20  text-sm font-medium text-gray-700">
-              <a href="#" className="hover:text-green-600 text-base font-bold">Biz haqimizda</a>
-              <a href="#" className="hover:text-green-600 text-base font-bold">Kurslar</a>
-              <a href="#" className="hover:text-green-600 text-base font-bold">Afzalliklar</a>
-              <a href="#" className="hover:text-green-600 text-base font-bold">Xonalar</a>
-              <a href="#" className="hover:text-green-600 text-base font-bold">Bog’lanish</a>
-            </div>
-          </nav>
+          {/* Desktop Language Switcher */}
+          <div className="hidden lg:flex items-center gap-2">
+            <span
+              className="text-gray-700 font-medium uppercase cursor-pointer"
+              onClick={toggleLanguage}
+            >
+              {language}
+            </span>
+            <button
+              onClick={toggleLanguage}
+              className="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
+            >
+              <FaGlobe className="text-xl text-black" />
+            </button>
+          </div>
 
+          {/* Mobile Menu Toggle */}
+          <div className="lg:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-3xl text-green-700 focus:outline-none"
+            >
+              {isOpen ? <FiX /> : <FiMenu />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="lg:hidden bg-white px-4 pb-4">
+            <nav className="flex flex-col gap-y-4 text-gray-700 font-bold text-base">
+              <a href="#" className="hover:text-green-600">Biz haqimizda</a>
+              <a href="#" className="hover:text-green-600">Kurslar</a>
+              <a href="#" className="hover:text-green-600">Afzalliklar</a>
+              <a href="#" className="hover:text-green-600">Xonalar</a>
+              <a href="#" className="hover:text-green-600">Bog’lanish</a>
+            </nav>
+            {/* Mobile Language Switcher */}
+            <div className="mt-4 flex items-center gap-2">
+              <span
+                className="text-gray-700 font-medium uppercase cursor-pointer"
+                onClick={toggleLanguage}
+              >
+                {language}
+              </span>
+              <button
+                onClick={toggleLanguage}
+                className="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
+              >
+                <FaGlobe className="text-xl text-black" />
+              </button>
+            </div>
+          </div>
+        )}
       </header>
 
       <main>
-        <section className="bg-green-50 py-16 ">
-          <div className='container mx-auto'>
-            <div className=" gap-48 px-20 flex  items-center justify-between">
-              <div className="lg:w-1/2 mb-8 lg:mb-0">
-                <p className="text-gray-600 text-xl font-semibold mb-2">Samarqand</p>
 
-                <h1 className="text-5xl font-bold text-green-700 mb-4 leading-tight">MALAKA OSHIRISH <br /> KURSLARI</h1>
-                <p className="text-gray-700 mb-6">
-                  Malaka oshirish kurslarini 35 yillik <br /> tajribaga ega Hodjaqulova Nasiba <br /> Sharofiddinovna tomonidan o’tiladi.
+        <section className="bg-green-50 py-10 min-h-[520px] relative">
+          <div className="container mx-auto px-4">
+            <div
+              className="flex flex-col lg:flex-row items-center justify-between gap-6 md:gap-12 lg:gap-24"
+              data-aos="fade-up"
+            >
+              {/* Chap tomoni */}
+              <div
+                className="w-full lg:w-1/2 text-center lg:text-left"
+                data-aos="fade-right"
+              >
+                <p className="text-gray-600 text-lg md:text-xl font-semibold mb-2">
+                  Samarqand
                 </p>
-                <div className="flex space-x-4">
-                  <button className="bg-green-600 text-white px-20 py-2 rounded hover:bg-green-700 transition">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-green-700 mb-4 leading-tight">
+                  MALAKA OSHIRISH <br /> KURSLARI
+                </h1>
+                <p className="text-gray-700 mb-6 text-base md:text-lg">
+                  Malaka oshirish kurslarini 35 yillik <br /> tajribaga ega Hodjaqulova
+                  Nasiba <br /> Sharofiddinovna tomonidan o’tiladi.
+                </p>
+                <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                  <button
+                    onClick={() => setIsModalOpen(true)}
+                    className="bg-[#007360] text-white px-10 py-2 rounded hover:bg-green-700 transition"
+                  >
                     Bog’lanish
-                  </button>
-                  <button className="border border-green-600 text-green-600 px-20 py-2 rounded hover:bg-green-100 transition">
-                    Batafsil
                   </button>
                 </div>
               </div>
 
-              <div className="lg:w-1/2 flex justify-center">
-                <img src={Nurses} alt="Women Group" className="max-h-[400px] object-contain" />
+              {/* O'ng tomoni - Rasm */}
+              <div className="w-full lg:w-1/2 flex justify-center" data-aos="fade-left">
+                <img
+                  src={Nurses}
+                  alt="Women Group"
+                  className=" md:max-h-[900px] object-contain w-full max-w-[500px]"
+                />
               </div>
             </div>
 
-            <div className="flex justify-center ">
-              <div className="bg-white absolute shadow-xl rounded-2xl p-10 w-full max-w-[1400px] flex flex-col md:flex-row items-center gap-6">
+            {/* Modal oyna */}
+            {isModalOpen && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div className="bg-[#007360] text-white rounded-2xl w-[90%] max-w-3xl relative shadow-lg flex flex-col md:flex-row overflow-hidden items-center md:items-stretch">
+                  {/* Yopish tugmasi */}
+                  <button
+                    className="absolute top-2 right-2 text-4xl text-white hover:text-red-500 z-10"
+                    onClick={() => setIsModalOpen(false)}
+                  >
+                    &times;
+                  </button>
 
-                {/* Ism Input */}
-                <div className="flex items-center border-r border-gray-300 pb-2 pl-5 gap-5 w-full md:w-[30%]">
-                  <FaUser className="text-[#007360] text-3xl mr-2" />
-                  <div>
-                    <h1 className='text-xl font-bold'>Sizning Ismingiz</h1>
+                  <div className="hidden md:flex md:w-1/2 flex-col items-center justify-center p-4 text-center">
+                    <img
+                      src={LogoWhite}
+                      alt="Hostel"
+                      className="w-full h-auto max-h-[300px] object-contain rounded-lg"
+                    />
+                    <h3 className="mt-4 text-lg font-semibold text-white">
+                      Shifokor O‘quv Markazi
+                    </h3>
+                    <p className="text-sm mt-1 text-white/80 px-2">
+                      Hamshiralik va akupunktura kurslari uchun ro‘yxatdan o‘ting.
+                    </p>
+                  </div>
+
+                  {/* Forma bo'limi */}
+                  <div className="w-full md:w-1/2 p-6 flex flex-col justify-center">
+                    <h2 className="text-xl font-semibold text-center mb-4">
+                      Buyurtma berish
+                    </h2>
+
+                    <form
+                      ref={form}
+                      onSubmit={sendEmail}
+                      className="flex flex-col gap-4"
+                    >
+                      <input
+                        type="text"
+                        name="user_name"
+                        placeholder="Ismingiz"
+                        className="border rounded px-4 py-2 text-black"
+                        required
+                        maxLength={15}
+                        pattern="^[A-Za-zА-Яа-яЎҚҒҲўқғҳ\s]{1,15}$"
+                        title="Faqat harflar kiriting (maksimal 15 ta)"
+                        onInput={(e) => {
+                          e.target.value = e.target.value.replace(
+                            /[^A-Za-zА-Яа-яЎҚҒҲўқғҳ\s]/g,
+                            ""
+                          );
+                        }}
+                      />
+
+                      <input
+                        type="tel"
+                        name="user_phone"
+                        placeholder="93 553 33 52"
+                        className="border rounded px-4 py-2 text-black"
+                        required
+                        onInput={(e) => {
+                          e.target.value = e.target.value.replace(/\D/g, "").slice(0, 9);
+                        }}
+                      />
+
+                      <textarea
+                        name="message"
+                        placeholder="Xabaringizni bu yerga yozing..."
+                        className="border rounded px-4 py-2 text-black h-28 resize-none"
+                        required
+                      />
+
+                      <button
+                        type="submit"
+                        className="bg-[#007360] text-white border font-semibold py-2 rounded"
+                      >
+                        Yuborish
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Forma qismi */}
+            <form
+              ref={form}
+              onSubmit={sendEmail}
+              className="flex justify-center mt-12 px-2"
+            >
+              <div className="bg-white shadow-xl rounded-2xl p-6 md:p-10 w-full max-w-7xl flex flex-col md:flex-row items-center gap-6">
+                {/* Ism */}
+                <div className="flex items-start md:items-center border-b md:border-b-0 md:border-r border-gray-300 pb-2 md:pb-0 md:pl-5 gap-3 w-full md:w-1/3">
+                  <FaUser className="text-[#007360] text-2xl md:text-3xl mt-1" />
+                  <div className="w-full">
+                    <h1 className="text-lg md:text-xl font-bold">Sizning Ismingiz</h1>
                     <input
                       type="text"
+                      name="user_name"
                       placeholder="Ismingiz"
                       className="bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none w-full"
                       pattern="[A-Za-z\u0400-\u04FF\s]+"
                       inputMode="text"
-                      onChange={(e) =>
-                        setName(e.target.value.replace(/[^A-Za-z\u0400-\u04FF\s]/g, ""))
-                      }
                       maxLength={20}
+                      required
                     />
                   </div>
                 </div>
 
-                {/* Telefon Input */}
-                <div className="flex items-center border-r border-gray-300 pb-2 pl-5 gap-5 w-full md:w-[30%]">
-                  <IoCallSharp className="text-[#007360] text-3xl mr-2" />
+                {/* Telefon */}
+                <div className="flex items-start md:items-center border-b md:border-b-0 md:border-r border-gray-300 pb-2 md:pb-0 md:pl-5 gap-3 w-full md:w-1/3">
+                  <IoCallSharp className="text-[#007360] text-2xl md:text-3xl mt-1" />
                   <div className="w-full">
-                    <h1 className="text-xl font-bold">Telefon raqamingiz</h1>
+                    <h1 className="text-lg md:text-xl font-bold">Telefon raqamingiz</h1>
                     <input
-                      type="number"
-                      placeholder="99 999 99 99"
+                      type="tel"
+                      name="user_phone"
+                      placeholder="93 553 33 52"
+                      pattern="\d{9}"
+                      maxLength={9}
+                      inputMode="numeric"
+                      required
                       className="bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none w-full"
                     />
                   </div>
                 </div>
 
-
-                {/* Button */}
-                <div className="w-full md:w-auto pl-20">
-                  <button className="bg-[#007360] hover:bg-[#005e4c] cursor-pointer text-white font-semibold px-20  py-2 rounded-xl w-full md:w-auto transition-all duration-300">
+                {/* Yuborish tugmasi */}
+                <div className="w-full md:w-auto ml-0 md:ml-20">
+                  <button
+                    type="submit"
+                    className="bg-[#007360] hover:bg-[#005e4c] text-white font-semibold px-16 py-3 rounded-xl w-full transition-all duration-300"
+                  >
                     Yuborish
                   </button>
                 </div>
-
               </div>
-            </div>
+            </form>
           </div>
-
         </section>
 
-        <section>
-
-          <div className='py-16'>
-            <div className='relative'>
-              <img className='absolute -top-16 right-0 z-0' src={bgimg} alt="" />
+        <section className="overflow-hidden">
+          <div className="py-16">
+            <div className="relative">
+              <img
+                className="absolute -top-16 right-0 z-0"
+                src={bgimg}
+                alt=""
+                data-aos="fade-down"
+              />
             </div>
 
-            <div className="flex flex-col md:flex-row justify-center items-center gap-40 py-10">
-              {[1, 2].map((card) => (
+            <div
+              className="flex flex-col md:flex-row justify-center items-center gap-40 py-10"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+            >
+              {[1, 2].map((card, idx) => (
                 <div
                   key={card}
                   className="w-96 h-[664px] bg-white shadow-lg mt-28 z-20 overflow-hidden border border-gray-200 flex flex-col justify-between"
+                  data-aos="zoom-in"
+                  data-aos-delay={idx * 300}  // Har kartaga ketma-ket kechikish qo'yamiz
                 >
                   <div className="p-4 flex flex-col justify-start gap-3">
                     {/* Header */}
                     <div className="flex justify-between mb-5 items-start">
                       <p className="text-md font-semibold text-gray-600">Kurs</p>
-                      <img
-                        src={LogoImg}
-                        alt="Shifokor logo"
-                        className="w-16"
-                      />
+                      <img src={LogoImg} alt="Shifokor logo" className="w-16" />
                     </div>
 
                     {/* Title & Mode */}
@@ -288,11 +452,12 @@ const App = () => {
                     </p>
 
                     {/* Description + Image */}
-                    <div className='flex items-center gap-5 mt-5'>
+                    <div className="flex items-center gap-5 mt-5">
                       <div className="flex gap-2 mt-1">
                         <div className="w-1.5 bg-gray-400 rounded-sm"></div>
                         <p className="text-sm font-medium text-gray-700 leading-snug">
-                          Malaka oshirish kurslariga yoziling va bilim ko‘nikmalaringizni yanada oshiring
+                          Malaka oshirish kurslariga yoziling va bilim ko‘nikmalaringizni
+                          yanada oshiring
                         </p>
                       </div>
 
@@ -323,56 +488,67 @@ const App = () => {
                 </div>
               ))}
             </div>
-
           </div>
-
         </section>
 
-        <section className="bg-[#EEEEEE] py-16">
-          <div className="flex flex-col container mx-auto md:flex-row items-center justify-between px-28 gap-10">
+        <section className="bg-[#EEEEEE] py-16 overflow-hidden" data-aos="fade-up" data-aos-duration="1000">
+          <div className="container mx-auto px-4 md:px-10 lg:px-28 flex flex-col-reverse md:flex-row items-center gap-12 md:gap-10">
+            {/* Matn */}
+            <div
+              className="w-full md:w-1/2 space-y-5 text-center md:text-left"
+              data-aos="fade-right"
+              data-aos-duration="1000"
+              data-aos-delay="300"
+            >
+              <p className="text-sm font-semibold text-[#007360] uppercase tracking-wider">
+                Biz haqimizda
+              </p>
+              <h1 className="text-3xl sm:text-4xl font-bold text-[#007360] leading-snug">
+                SHIFOKOR TIBBIY <br /> O‘QUV MARKAZI
+              </h1>
+              <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+                Bizning Shifokor tibbiy o‘quv markazimizda sizga <br className="hidden md:block" />
+                ko‘p yillik tajribaga ega o‘qituvchilar <br className="hidden md:block" />
+                tomonidan darslar o‘tiladi.
+              </p>
+              <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+                Kurs yakunida bitiruvchilarga sertifikatlar beriladi. <br className="hidden md:block" />
+                Bizning o‘qituvchilarimiz orasida 35 yil va <br className="hidden md:block" />
+                undan ortiq tajribaga ega mutaxassislar mavjud.
+              </p>
+            </div>
 
-            {/* Left Image */}
-            <div>
-              <div className="w-full md:w-[490px] h-[566px]">
+            {/* Rasm */}
+            <div
+              className="w-full md:w-1/2 flex justify-center"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-delay="500"
+            >
+              <div className="w-full max-w-sm sm:max-w-md md:max-w-lg h-[400px] sm:h-[500px] md:h-[566px]">
                 <img
                   src={AboutImg}
                   alt="Biz haqimizda"
-                  className="w-full h-full object-cover "
+                  className="w-full h-full object-cover rounded-md shadow-md"
                 />
-              </div>
-            </div>
-
-            {/* Right Text */}
-            <div>
-              <div className="w-full md:flex-1 space-y-5">
-                <p className="text-sm font-semibold text-[#007360] uppercase tracking-wider">
-                  Biz haqimizda
-                </p>
-                <h1 className="text-3xl md:text-4xl font-bold text-[#007360] leading-snug">
-                  SHIFOKOR
-                  TIBBIY <br /> O‘QUV
-                  MARKAZI
-                </h1>
-                <p className="text-gray-700 text-xl font-medium leading-relaxed">
-                  Bizning Shifokor tibbiy o‘quv markazimizda sizga <br /> ko‘p yillik  tajribaga
-                  ega o‘qituvchilar <br />  tomonidan darslar o‘tiladi.
-                </p>
-                <p className="text-gray-700 text-xl font-medium leading-relaxed">
-                  Kurs yakunida bitiruvchilarga <br /> sertifikatlar beriladi. Bizning
-                  o‘qituvchilarimiz orasida 35 yil va <br />  undan ortiq tajribaga ega
-                  mutaxassislar mavjud.
-                </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-16 px-6 md:px-16  ">
+        <section className="py-16 px-6 md:px-16 overflow-hidden" data-aos="fade-up" data-aos-duration="1000">
           <div className='container mx-auto'>
-            <h1 className='text-[38px] text-center font-black text-[#007360] mb-5'>HAMSHIRALARNI O'QITISH DASTURI</h1>
+            <h1 className='text-[38px] text-center font-black text-[#007360] mb-5' data-aos="fade-down" data-aos-duration="1000" data-aos-delay="200">
+              HAMSHIRALARNI O'QITISH DASTURI
+            </h1>
             <div className="md:flex ">
               {/* Accordion */}
-              <div className="flex-1 space-y-4 bg-[#007360] py-5 px-5">
+              <div
+                className="flex-1 space-y-4 bg-[#007360] py-5 px-5"
+                data-aos="fade-right"
+                data-aos-duration="1000"
+                data-aos-delay="400"
+              >
                 {accordionData.map((item, index) => (
                   <div key={index}>
                     <button
@@ -390,7 +566,12 @@ const App = () => {
               </div>
 
               {/* Cards */}
-              <div className="flex-1 grid grid-cols-2 gap-4 border-2 border-[#007360] py-10 px-10">
+              <div
+                className="flex-1 grid grid-cols-2 gap-4 border-2 border-[#007360] py-10 px-10"
+                data-aos="fade-left"
+                data-aos-duration="1000"
+                data-aos-delay="600"
+              >
                 {cards.map((card, index) => (
                   <div
                     key={index}
@@ -405,11 +586,15 @@ const App = () => {
                   </div>
                 ))}
               </div>
-
             </div>
 
             {/* Dars Jadvali */}
-            <div className="bg-[#007360] text-white p-6">
+            <div
+              className="bg-[#007360] text-white p-6"
+              data-aos="zoom-in"
+              data-aos-duration="1000"
+              data-aos-delay="800"
+            >
               <h3 className="text-3xl font-bold text-center mb-4">DARS JADVALI</h3>
               <div className="grid grid-cols-7 text-center text-sm font-semibold">
                 {days.map((day, index) => (
@@ -435,18 +620,22 @@ const App = () => {
           </div>
         </section>
 
-
-        <section className="py-16 bg-white">
-          <h2 className="text-3xl font-bold text-center mb-12">Nega aynan biz?</h2>
+        <section className="py-16 bg-white overflow-hidden" data-aos="fade-up" data-aos-duration="1000">
+          <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-down" data-aos-duration="800" data-aos-delay="200">
+            Nega aynan biz?
+          </h2>
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
             {features.map((item, idx) => (
               <div
                 key={idx}
                 className={`relative p-6 rounded-xl shadow-md overflow-hidden transition duration-300 transform 
-      ${item.highlight
-                    ? "bg-[#007360] text-white hover:hover:scale-105 hover:-translate-y-1.5 cursor-pointer"
+          ${item.highlight
+                    ? "bg-[#007360] text-white hover:scale-105 hover:-translate-y-1.5 cursor-pointer"
                     : "bg-white text-gray-800 hover:shadow-lg hover:scale-105 hover:-translate-y-1.5 cursor-pointer"
                   }`}
+                data-aos="zoom-in"
+                data-aos-duration="1000"
+                data-aos-delay={idx * 200}  // Har karta uchun ketma-ket kechikish
               >
                 {/* Background Number */}
                 <div className="absolute bottom-4 right-6 text-[100px] font-bold opacity-10 leading-none select-none">
@@ -458,16 +647,32 @@ const App = () => {
                 <p className="text-sm leading-relaxed">{item.description}</p>
               </div>
             ))}
-
           </div>
         </section>
 
-        <section className="py-16 px-6 md:px-16  ">
-          <div className='container mx-auto'>
-            <h1 className='text-[38px] text-center font-black text-[#007360] mb-5'>IGNA REFLEKSOTERAPİYASI O'QITISH DASTURI</h1>
-            <div className="md:flex ">
+        <section
+          className="py-16 px-6 md:px-16 overflow-hidden"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          <div className="container mx-auto">
+            <h1
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-[38px] text-center font-black text-[#007360] mb-5"
+              data-aos="fade-down"
+              data-aos-duration="800"
+              data-aos-delay="200"
+            >
+              IGNA REFLEKSOTERAPİYASI O'QITISH DASTURI
+            </h1>
+
+            <div className="md:flex">
               {/* Accordion */}
-              <div className="flex-1 space-y-4 bg-[#007360] py-5 px-5">
+              <div
+                className="flex-1 space-y-4 bg-[#007360] py-5 px-5"
+                data-aos="fade-right"
+                data-aos-duration="1000"
+                data-aos-delay="400"
+              >
                 {accordionData.map((item, index) => (
                   <div key={index}>
                     <button
@@ -485,7 +690,12 @@ const App = () => {
               </div>
 
               {/* Cards */}
-              <div className="flex-1 grid grid-cols-2 gap-4 border-2 border-[#007360] py-10 px-10">
+              <div
+                className="flex-1 grid grid-cols-2 gap-4 border-2 border-[#007360] py-10 px-10"
+                data-aos="fade-left"
+                data-aos-duration="1000"
+                data-aos-delay="600"
+              >
                 {cards.map((card, index) => (
                   <div
                     key={index}
@@ -493,25 +703,34 @@ const App = () => {
                   >
                     <div className="text-xl flex justify-center mb-3">
                       {React.cloneElement(card.icon, {
-                        className: "text-[#007360] group-hover:text-white transition duration-300",
+                        className:
+                          "text-[#007360] group-hover:text-white transition duration-300",
                       })}
                     </div>
                     <p className="text-sm text-center font-medium">{card.text}</p>
                   </div>
                 ))}
               </div>
-
             </div>
 
             {/* Dars Jadvali */}
-            <div className="bg-[#007360] text-white p-6">
+            <div
+              className="bg-[#007360] text-white p-6"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="800"
+            >
               <h3 className="text-3xl font-bold text-center mb-4">DARS JADVALI</h3>
               <div className="grid grid-cols-7 text-center text-sm font-semibold">
-                {days.map((day, index) => (
+                {daysIg.map((day, index) => (
                   <div key={index} className="py-2 border border-white">
-                    <div className='border-b text-xl font-bold'>{day.name}</div>
+                    <div className="border-b text-xl font-bold">{day.name}</div>
                     <div className="text-lg mt-1">
-                      {day.hasClass ? <FaCheck className="text-green-300 mx-auto" /> : <FaTimes className="text-red-400 mx-auto" />}
+                      {day.hasClass ? (
+                        <FaCheck className="text-green-300 mx-auto" />
+                      ) : (
+                        <FaTimes className="text-red-400 mx-auto" />
+                      )}
                     </div>
                   </div>
                 ))}
@@ -520,17 +739,19 @@ const App = () => {
               {/* Additional info */}
               <div className="flex justify-center gap-20 mt-10 text-sm">
                 <div className="flex items-center gap-2">
-                  <FaCalendarAlt className='text-2xl' /> <span className='text-xl font-semibold'>Haftada 3 kun</span>
+                  <FaCalendarAlt className="text-2xl" />{" "}
+                  <span className="text-xl font-semibold">Haftada 5 kun</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <FaClock className='text-2xl' /> <span className='text-xl font-semibold'>4 soat</span>
+                  <FaClock className="text-2xl" />{" "}
+                  <span className="text-xl font-semibold">4 soat</span>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section>
+        {/* <section>
 
           <div className=" flex justify-center">
             <Swiper
@@ -623,28 +844,59 @@ const App = () => {
 
             </Swiper>
           </div>
+        </section> */}
+
+        <section className="overflow-hidden">
+          <h1
+            className="text-5xl font-bold text-center mt-10 mb-10 uppercase text-[#007360]"
+            data-aos="fade-down"
+            data-aos-duration="1000"
+          >
+            Litsenziya
+          </h1>
+
+          <div
+            className="relative -top-28"
+            data-aos="fade-left"
+            data-aos-duration="1200"
+            data-aos-delay="200"
+          >
+            <img className="absolute right-0 -z-10 top-0" src={BgLitsenziya} alt="" />
+          </div>
+
+          <div
+            className="flex justify-center"
+            data-aos="zoom-in"
+            data-aos-duration="1200"
+            data-aos-delay="400"
+          >
+            <img src={Litsenziya} alt="Litsenziya rasmi" />
+          </div>
         </section>
 
-        <section>
-          <h1 className='text-5xl font-bold text-center mt-10 mb-10 uppercase text-[#007360]'>Litsenziya</h1>
-          <div className='relative -top-28'>
-            <img className='absolute right-0 -z-10 top-0' src={BgLitsenziya} alt="" />
-          </div>
-          <div className='flex justify-center'>
-            <img src={Litsenziya} alt="" />
-          </div>
+        <section
+          className="bg-[#EEEEEE] py-10 mt-16 overflow-hidden"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          <h1
+            className="text-center font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#007360] mb-10 uppercase"
+            data-aos="fade-down"
+            data-aos-duration="800"
+            data-aos-delay="200"
+          >
+            VIDEO JAMLANMA
+          </h1>
 
-        </section>
-
-
-        <section className='bg-[#EEEEEE] py-10 mt-16'>
-
-          <h1 className='text-center font-bold text-5xl text-[#007360] mb-5 mt-20 uppercase'>VIDEO JAMLANMA</h1>
-          <div className="max-w-6xl mx-auto ">
+          <div
+            className="max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="400"
+          >
             <Swiper
               modules={[Navigation, Pagination, Autoplay]}
               spaceBetween={20}
-              slidesPerView={3}
               navigation={{
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
@@ -652,118 +904,98 @@ const App = () => {
               pagination={{ clickable: true }}
               autoplay={{ delay: 3000 }}
               breakpoints={{
-                768: { slidesPerView: 1 },
-                1024: { slidesPerView: 3 },
+                0: { slidesPerView: 1 },         // mobile
+                640: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },       // tablets
+                1024: { slidesPerView: 3 },      // desktop
               }}
               className="relative"
             >
-              <SwiperSlide>
-                <div className="h-[70vh] w-full flex items-center justify-center">
-                  <iframe
-                    className="w-full max-w-4xl h-[60vh] rounded-xl shadow-lg"
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1"
-                    title="AKSIYA Video 1"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div className="h-[70vh] w-full flex items-center justify-center">
-                  <iframe
-                    className="w-full max-w-4xl h-[60vh] rounded-xl shadow-lg"
-                    src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1"
-                    title="AKSIYA Video 2"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div className="h-[70vh] w-full flex items-center justify-center">
-                  <iframe
-                    className="w-full max-w-4xl h-[60vh] rounded-xl shadow-lg"
-                    src="https://www.youtube.com/embed/ScMzIvxBSi4?autoplay=1&mute=1"
-                    title="AKSIYA Video 3"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div className="h-[70vh] w-full flex items-center justify-center">
-                  <iframe
-                    className="w-full max-w-4xl h-[60vh] rounded-xl shadow-lg"
-                    src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&mute=1"
-                    title="AKSIYA Video 4"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              </SwiperSlide>
-
+              {[1, 2, 3, 4].map((_, index) => (
+                <SwiperSlide key={index}>
+                  <div className="aspect-video w-full flex items-center justify-center">
+                    <iframe
+                      className="w-full h-full rounded-xl shadow-lg"
+                      src={`https://www.youtube.com/embed/${['dQw4w9WgXcQ', 'jfKfPfyJRdk', 'ScMzIvxBSi4', 'jfKfPfyJRdk'][index]
+                        }?autoplay=0&mute=1`}
+                      title={`AKSIYA Video ${index + 1}`}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
         </section>
 
-        <section className="w-full">
-          <div className="w-full items-center gap-8 flex justify-between">
-
+        <section
+          className="w-full py-16 px-4 sm:px-6 lg:px-10 overflow-hidden"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          <div
+            className="flex flex-col lg:flex-row items-center gap-12 justify-between w-full max-w-7xl mx-auto"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="200"
+          >
             {/* Chap tomonda matn */}
-            <div className="flex justify-center px-10">
+            <div className="w-full lg:w-1/2" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="400">
               <div>
-                <div className='flex items-center gap-3 mb-2'>
-                  <IoLocationSharp className='text-2xl text-[#007360]' />
-                  <h2 className="text-2xl font-semibold text-[#007360] ">Bizning manzil</h2>
+                <div className="flex items-center gap-3 mb-3">
+                  <IoLocationSharp className="text-2xl text-[#007360]" />
+                  <h2 className="text-2xl font-semibold text-[#007360]">Bizning manzil</h2>
                 </div>
                 <p className="text-[#007360] font-semibold mb-5">
                   Amir Temur shox ko'chasi, 107 B-uy, Toshkent, O'zbekiston
                 </p>
-                <p className="text-gray-600">
-                  <div className='flex items-center gap-3 mb-2'>
-                    <CgMail className='text-2xl text-[#007360]' />
-                    <h1 className='text-2xl font-medium text-[#007360]'>Elektron pochta:</h1>
-                  </div>
-                  <p className='text-xl font-semibold text-[#007360] mb-5'>example@mail.uz</p>
-                </p>
 
-                <div>
-                  <div className='flex items-center gap-3 mb-2'>
-                    <IoCall className='text-2xl text-[#007360]' />
-                    <h1 className='text-xl font-medium text-[#007360]'>Telefon</h1>
-                  </div>
-                  <a href="tel:+998935533352" className="text-[#007360] font-bold hover:underline">+998 93 553 33 52</a>
+                <div className="flex items-center gap-3 mb-2">
+                  <CgMail className="text-2xl text-[#007360]" />
+                  <h3 className="text-xl font-medium text-[#007360]">Elektron pochta:</h3>
                 </div>
+                <p className="text-lg font-semibold text-[#007360] mb-5">example@mail.uz</p>
 
+                <div className="flex items-center gap-3 mb-2">
+                  <IoCall className="text-2xl text-[#007360]" />
+                  <h3 className="text-xl font-medium text-[#007360]">Telefon:</h3>
+                </div>
+                <a
+                  href="tel:+998935533352"
+                  className="text-[#007360] font-bold hover:underline text-lg"
+                >
+                  +998 93 553 33 52
+                </a>
               </div>
             </div>
 
             {/* O‘ng tomonda Google Maps */}
-            <div className="w-full lg:w-1/2 h-full">
+            <div
+              className="w-full lg:w-1/2 h-[350px] sm:h-[400px] md:h-[450px]"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-delay="600"
+            >
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6090.994748927668!2d72.3307203!3d40.8011046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb85f1c4d10b11%3A0xb8bdf7a53d26a0c3!2sPasport%20Stol%20%E2%84%962!5e0!3m2!1sru!2s!4v1714036123456!5m2!1sru!2s"
                 width="100%"
-                height="450"
+                height="100%"
                 style={{ border: 0 }}
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
+                className="rounded-xl shadow-md w-full h-full"
               ></iframe>
             </div>
           </div>
         </section>
 
-
       </main >
 
       <footer className="bg-[#0A5548] ">
+
         <div className="flex flex-col md:flex-row text-white container mx-auto py-10 px-10 justify-between gap-8">
 
           {/* Logo */}
@@ -795,11 +1027,15 @@ const App = () => {
           </div>
 
         </div>
-        <div className='flex justify-center text-white '>
-          <h1 className='mr-2 font-normal'>© SHIFOKOR OQUV MARKAZI 2025 </h1>
-          <span> | </span>
-          <a href="" className='ml-2 font-normal'> IPro Group Support</a>
+        <hr />
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 mt-2 pb-4 text-white text-center px-4">
+          <h1 className="font-normal">© SHIFOKOR O‘QUV MARKAZI 2025</h1>
+          <span className="hidden sm:inline">|</span>
+          <a href="#" className="font-normal uppercase hover:underline">
+            IPro Group Support
+          </a>
         </div>
+
       </footer>
 
 
