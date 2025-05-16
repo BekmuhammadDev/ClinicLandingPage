@@ -25,6 +25,7 @@ import { FiMenu, FiX } from "react-icons/fi";
 import emailjs from '@emailjs/browser';
 import LogoWhite from "./assets/LogoWhite.png"
 import { useTranslation } from 'react-i18next';
+import "./i18"
 
 
 const App = () => {
@@ -194,7 +195,7 @@ const App = () => {
         </div>
 
         {/* Mobile Menu */}
-        {isOpen && (
+        {/* {isOpen && (
           <div className="lg:hidden bg-white px-4 pb-4">
             <nav className="flex flex-col gap-y-4 text-gray-700 font-bold text-base">
               <a href="#" className="hover:text-green-600">Biz haqimizda</a>
@@ -203,7 +204,7 @@ const App = () => {
               <a href="#" className="hover:text-green-600">Xonalar</a>
               <a href="#" className="hover:text-green-600">Bog’lanish</a>
             </nav>
-            {/* Mobile Language Switcher */}
+
             <div className="mt-4 flex items-center gap-2">
               <span
                 className="text-gray-700 font-medium uppercase cursor-pointer"
@@ -219,7 +220,7 @@ const App = () => {
               </button>
             </div>
           </div>
-        )}
+        )} */}
       </header>
 
       <main>
@@ -239,18 +240,17 @@ const App = () => {
                   Samarqand
                 </p>
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-green-700 mb-4 leading-tight">
-                  MALAKA OSHIRISH <br /> KURSLARI
+                  {t("course_title")} <br /> {t("course_subtitle")}
                 </h1>
                 <p className="text-gray-700 mb-6 text-base md:text-lg">
-                  Malaka oshirish kurslarini 35 yillik <br /> tajribaga ega Hodjaqulova
-                  Nasiba <br /> Sharofiddinovna tomonidan o’tiladi.
+                 {t("course_description")}
                 </p>
                 <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
                   <button
                     onClick={() => setIsModalOpen(true)}
                     className="bg-[#007360] text-white px-10 py-2 rounded hover:bg-green-700 transition"
                   >
-                    Bog’lanish
+                   {t("contact")}
                   </button>
                 </div>
               </div>
@@ -284,17 +284,17 @@ const App = () => {
                       className="w-full h-auto max-h-[300px] object-contain rounded-lg"
                     />
                     <h3 className="mt-4 text-lg font-semibold text-white">
-                      Shifokor O‘quv Markazi
+                      {t("center_name")}
                     </h3>
                     <p className="text-sm mt-1 text-white/80 px-2">
-                      Hamshiralik va akupunktura kurslari uchun ro‘yxatdan o‘ting.
+                     {t("center_description")}
                     </p>
                   </div>
 
                   {/* Forma bo'limi */}
                   <div className="w-full md:w-1/2 p-6 flex flex-col justify-center">
                     <h2 className="text-xl font-semibold text-center mb-4">
-                      Buyurtma berish
+                      {t("orderTitle")}
                     </h2>
 
                     <form
@@ -305,7 +305,7 @@ const App = () => {
                       <input
                         type="text"
                         name="user_name"
-                        placeholder="Ismingiz"
+                        placeholder={t("namePlaceholder")}
                         className="border rounded px-4 py-2 text-black"
                         required
                         maxLength={15}
@@ -332,7 +332,7 @@ const App = () => {
 
                       <textarea
                         name="message"
-                        placeholder="Xabaringizni bu yerga yozing..."
+                        placeholder={t("writeYourMessage")}
                         className="border rounded px-4 py-2 text-black h-28 resize-none"
                         required
                       />
@@ -341,7 +341,7 @@ const App = () => {
                         type="submit"
                         className="bg-[#007360] text-white border font-semibold py-2 rounded"
                       >
-                        Yuborish
+                        {t("submitButton")}
                       </button>
                     </form>
                   </div>
@@ -427,7 +427,7 @@ const App = () => {
                   key={card}
                   className="w-96 h-[664px] bg-white shadow-lg mt-28 z-20 overflow-hidden border border-gray-200 flex flex-col justify-between"
                   data-aos="zoom-in"
-                  data-aos-delay={idx * 300}  // Har kartaga ketma-ket kechikish qo'yamiz
+                  data-aos-delay={idx * 300} 
                 >
                   <div className="p-4 flex flex-col justify-start gap-3">
                     {/* Header */}
@@ -439,16 +439,16 @@ const App = () => {
                     {/* Title & Mode */}
                     <div>
                       <h2 className="text-lg mb-5 font-bold text-[#007360] leading-tight">
-                        HAMSHIRALARNI <br /> O‘QITISH
+                       {t("nursing_title")}
                       </h2>
                       <button className="bg-green-800 text-white text-sm font-semibold px-16 py-2 rounded-md w-fit">
-                        Oflayn
+                        {t("nursing_mode")}
                       </button>
                     </div>
 
                     {/* Teacher */}
                     <p className="text-red-600 font-semibold text-xl leading-tight">
-                      Hodjaqulova <br /> Nasiba <br /> Sharofiddinovna
+                      {t("nursing_teacher")}
                     </p>
 
                     {/* Description + Image */}
@@ -456,8 +456,7 @@ const App = () => {
                       <div className="flex gap-2 mt-1">
                         <div className="w-1.5 bg-gray-400 rounded-sm"></div>
                         <p className="text-sm font-medium text-gray-700 leading-snug">
-                          Malaka oshirish kurslariga yoziling va bilim ko‘nikmalaringizni
-                          yanada oshiring
+                         {t("nursing_cta")}
                         </p>
                       </div>
 
@@ -472,17 +471,17 @@ const App = () => {
 
                     {/* Group info */}
                     <p className="text-base font-medium text-gray-600 mt-3">
-                      5 kishilik kichik guruhlar
+                     {t("small_groups")}
                     </p>
                   </div>
 
                   {/* Buttons */}
                   <div className="flex flex-col">
                     <button className="w-full py-3 bg-[#007360] text-white font-semibold">
-                      O’qituvchi
+                      {t("teacher_label")}
                     </button>
                     <button className="w-full py-3 bg-[#ECF9EB] text-[#007360] font-semibold">
-                      Batafsil
+                      {t("learn_more")}
                     </button>
                   </div>
                 </div>
@@ -501,20 +500,16 @@ const App = () => {
               data-aos-delay="300"
             >
               <p className="text-sm font-semibold text-[#007360] uppercase tracking-wider">
-                Biz haqimizda
+                {t("aboutUs")}
               </p>
               <h1 className="text-3xl sm:text-4xl font-bold text-[#007360] leading-snug">
-                SHIFOKOR TIBBIY <br /> O‘QUV MARKAZI
+                {t("center_name")}
               </h1>
               <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-                Bizning Shifokor tibbiy o‘quv markazimizda sizga <br className="hidden md:block" />
-                ko‘p yillik tajribaga ega o‘qituvchilar <br className="hidden md:block" />
-                tomonidan darslar o‘tiladi.
+               {t("teaching_info")}
               </p>
               <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-                Kurs yakunida bitiruvchilarga sertifikatlar beriladi. <br className="hidden md:block" />
-                Bizning o‘qituvchilarimiz orasida 35 yil va <br className="hidden md:block" />
-                undan ortiq tajribaga ega mutaxassislar mavjud.
+                {t("certification_info")}
               </p>
             </div>
 
@@ -539,7 +534,7 @@ const App = () => {
         <section className="py-16 px-6 md:px-16 overflow-hidden" data-aos="fade-up" data-aos-duration="1000">
           <div className='container mx-auto'>
             <h1 className='text-[38px] text-center font-black text-[#007360] mb-5' data-aos="fade-down" data-aos-duration="1000" data-aos-delay="200">
-              HAMSHIRALARNI O'QITISH DASTURI
+             {t("nursing_program_title")}
             </h1>
             <div className="md:flex ">
               {/* Accordion */}
@@ -595,7 +590,7 @@ const App = () => {
               data-aos-duration="1000"
               data-aos-delay="800"
             >
-              <h3 className="text-3xl font-bold text-center mb-4">DARS JADVALI</h3>
+              <h3 className="text-3xl font-bold text-center mb-4">{t("nursing_schedule")}</h3>
               <div className="grid grid-cols-7 text-center text-sm font-semibold">
                 {days.map((day, index) => (
                   <div key={index} className="py-2 border border-white">
@@ -610,10 +605,10 @@ const App = () => {
               {/* Additional info */}
               <div className="flex justify-center gap-20 mt-10 text-sm">
                 <div className="flex items-center gap-2">
-                  <FaCalendarAlt className='text-2xl' /> <span className='text-xl font-semibold'>Haftada 3 kun</span>
+                  <FaCalendarAlt className='text-2xl' /> <span className='text-xl font-semibold'>{t("nursing_days")}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <FaClock className='text-2xl' /> <span className='text-xl font-semibold'>4 soat</span>
+                  <FaClock className='text-2xl' /> <span className='text-xl font-semibold'>{t("nursing_hours")}</span>
                 </div>
               </div>
             </div>
@@ -622,7 +617,7 @@ const App = () => {
 
         <section className="py-16 bg-white overflow-hidden" data-aos="fade-up" data-aos-duration="1000">
           <h2 className="text-3xl font-bold text-center mb-12" data-aos="fade-down" data-aos-duration="800" data-aos-delay="200">
-            Nega aynan biz?
+            {t("why_us")}
           </h2>
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
             {features.map((item, idx) => (
@@ -662,7 +657,7 @@ const App = () => {
               data-aos-duration="800"
               data-aos-delay="200"
             >
-              IGNA REFLEKSOTERAPİYASI O'QITISH DASTURI
+              {t("acupuncture_program_title")}
             </h1>
 
             <div className="md:flex">
@@ -720,7 +715,7 @@ const App = () => {
               data-aos-duration="1000"
               data-aos-delay="800"
             >
-              <h3 className="text-3xl font-bold text-center mb-4">DARS JADVALI</h3>
+              <h3 className="text-3xl font-bold text-center mb-4">{t('nursing_schedule')}</h3>
               <div className="grid grid-cols-7 text-center text-sm font-semibold">
                 {daysIg.map((day, index) => (
                   <div key={index} className="py-2 border border-white">
@@ -740,11 +735,11 @@ const App = () => {
               <div className="flex justify-center gap-20 mt-10 text-sm">
                 <div className="flex items-center gap-2">
                   <FaCalendarAlt className="text-2xl" />{" "}
-                  <span className="text-xl font-semibold">Haftada 5 kun</span>
+                  <span className="text-xl font-semibold">{t("acupuncture_days")}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <FaClock className="text-2xl" />{" "}
-                  <span className="text-xl font-semibold">4 soat</span>
+                  <span className="text-xl font-semibold">{t('nursing_hours')}</span>
                 </div>
               </div>
             </div>
@@ -852,7 +847,7 @@ const App = () => {
             data-aos="fade-down"
             data-aos-duration="1000"
           >
-            Litsenziya
+          {t("license")}
           </h1>
 
           <div
@@ -885,7 +880,7 @@ const App = () => {
             data-aos-duration="800"
             data-aos-delay="200"
           >
-            VIDEO JAMLANMA
+          {t("video_collection")}
           </h1>
 
           <div
@@ -946,21 +941,21 @@ const App = () => {
               <div>
                 <div className="flex items-center gap-3 mb-3">
                   <IoLocationSharp className="text-2xl text-[#007360]" />
-                  <h2 className="text-2xl font-semibold text-[#007360]">Bizning manzil</h2>
+                  <h2 className="text-2xl font-semibold text-[#007360]">{t("our_address")}</h2>
                 </div>
                 <p className="text-[#007360] font-semibold mb-5">
-                  Amir Temur shox ko'chasi, 107 B-uy, Toshkent, O'zbekiston
+                  {t("address_details")}
                 </p>
 
                 <div className="flex items-center gap-3 mb-2">
                   <CgMail className="text-2xl text-[#007360]" />
-                  <h3 className="text-xl font-medium text-[#007360]">Elektron pochta:</h3>
+                  <h3 className="text-xl font-medium text-[#007360]">{t("emailPlaceholder")}:</h3>
                 </div>
                 <p className="text-lg font-semibold text-[#007360] mb-5">example@mail.uz</p>
 
                 <div className="flex items-center gap-3 mb-2">
                   <IoCall className="text-2xl text-[#007360]" />
-                  <h3 className="text-xl font-medium text-[#007360]">Telefon:</h3>
+                  <h3 className="text-xl font-medium text-[#007360]">{t("phone")}:</h3>
                 </div>
                 <a
                   href="tel:+998935533352"
@@ -1005,16 +1000,16 @@ const App = () => {
 
           {/* Kontaktlar */}
           <div>
-            <h1 className="text-lg font-semibold mb-2">Kontaktlar</h1>
+            <h1 className="text-lg font-semibold mb-2">{t('contacts')}</h1>
             <p className="text-sm">Toshkent, Yunusobod</p>
             <p className="text-sm">+998 00 000 00 00</p>
           </div>
 
           {/* Linklar */}
           <div>
-            <h1 className="text-lg font-semibold mb-2">Linklar</h1>
-            <a href="#" className="text-sm block hover:underline">Biz haqimizda</a>
-            <a href="#" className="text-sm block hover:underline">Hizmatlar</a>
+            <h1 className="text-lg font-semibold mb-2">{t("our_links")}</h1>
+            <a href="#" className="text-sm block hover:underline">{t("aboutUs")}</a>
+            <a href="#" className="text-sm block hover:underline">{t("services")}</a>
           </div>
 
           {/* Medialar */}
